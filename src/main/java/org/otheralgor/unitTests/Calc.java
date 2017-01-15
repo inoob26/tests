@@ -8,12 +8,8 @@ public class Calc {
     }
 
     public int div(int a,int b){
-        //if(a != 0 && b != 0){
-            return a/b;
-        /*} else {
-            System.out.println("I can't to div on zero");
-            return 0;
-        }*/
+        Objects.requireNonNull(b,"I can't to div on zero b");
+        return a/b;
 
     }
 }

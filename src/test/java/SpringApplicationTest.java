@@ -23,9 +23,12 @@ public class SpringApplicationTest {
     public void testFileEventLogger(){
         FileEventLogger fileEventLogger = applicationContext.getBean(FileEventLogger.class);
 
-        Event event = new Event(new Date(), DateFormat.getDateInstance());
+        Event event = new Event(new Date(), DateFormat.getDateTimeInstance());
         event.setMsg("1234");
         fileEventLogger.loggEvent(event);
+        Event event1 = new Event(new Date(), DateFormat.getDateTimeInstance());
+        event1.setMsg("12345");
+        fileEventLogger.loggEvent(event1);
     }
 
     @Before

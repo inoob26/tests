@@ -21,12 +21,8 @@
     </bean>
 
     <bean id="fileEventLogger" class="org.otheralgor.spring.FileEventLogger" init-method="init">
-        <!--
-        <constructor-arg name="fileName">
-            <value>classpath:log.txt</value>
-        </constructor-arg>
-        -->
         <constructor-arg index="0" ref="event" />
+        <constructor-arg name="fileName" value = "src/main/resources/log.txt" />
     </bean>
     
     <bean id="app" class="org.otheralgor.spring.Application">

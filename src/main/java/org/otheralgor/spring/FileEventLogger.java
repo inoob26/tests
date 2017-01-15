@@ -15,33 +15,37 @@ import java.io.IOException;
  * @since 1.0
  */
 public class FileEventLogger implements EventLogger{
-    @Value("file:/Volumes/data/Code/Java/alghor/src/main/resources/log.txt")
     String fileName;
     Event event;
     File file;
 
-    public FileEventLogger(Event event){
-        //this.fileName = fileName;
+    public FileEventLogger(Event event,String fileName){
+        this.fileName = fileName;
         this.event = event;
     }
 
     /**
-     * init method check file write access
-     *
+     * init method check file exist and file write access
+     *  if file not exist it will be created
      * @throws IOException
      *      if file haven't access to write
      */
     public void init() throws IOException{
-        this.file = new File("src/main/resources/log.txt");
-        if (!file.canWrite()){
+        this.file = new File(fileName);
+        if (file.exists() && !file.canWrite()){
             throw new IOException();
         }
     }
 
+    /**
+     * Write event message to file
+     * @param event
+     *       get event
+     */
     @Override
     public void loggEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.toString(), true);
+            FileUtils.writeStringToFile(file, event.toString() + "\n", true);
         }catch (IOException e){
             e.printStackTrace();
         }

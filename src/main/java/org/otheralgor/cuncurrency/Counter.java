@@ -9,11 +9,6 @@ public class Counter {
     Object lock1 = new Object();
     Object lock2 = new Object();
 
-    /*
-    * при использовании такого подхода мы можем 1м потоком ловить несколько локов
-    * при public synchronized void .... мы поймаем только 1н лок
-     */
-
     public void inc1(){
         synchronized (lock1){
             c1++;
